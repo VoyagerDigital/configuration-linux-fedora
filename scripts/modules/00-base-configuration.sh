@@ -15,7 +15,7 @@ sudo dnf install \
 mkdir \
     -p "$HOME/repositories" \
     -p "$HOME/repositories/github" \
-    -p "$HOME/repositories/github/VoyagerDigital" \
+    -p "$HOME/repositories/github/DigitalVoyager" \
 
 ##### INSTALL BASE PACKAGES #####
 sudo dnf install \
