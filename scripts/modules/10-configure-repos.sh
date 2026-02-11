@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_FILE="${1:-../../files/repositories.yml}"
+REPO_FILE="${1:-../../files/config.yaml}"
 
 if [[ ! -f "$REPO_FILE" ]]; then
   echo "Repo file not found: $REPO_FILE" >&2
@@ -14,7 +14,7 @@ if ! command -v yq >/dev/null 2>&1; then
 fi
 
 # Read YAML into array. This expects: copr_repos: [ ... ]
-mapfile -t COPR_REPOS < <(yq -r '.copr_repos[]? // empty' "$REPO_FILE")
+mapfile -t COPR_REPOS < <(yq -r '.copr_repositories // [] | .[] | select(. != "")' "$REPO_FILE")
 
 if [[ ${#COPR_REPOS[@]} -eq 0 ]]; then
   echo "No repositories found in $REPO_FILE"
