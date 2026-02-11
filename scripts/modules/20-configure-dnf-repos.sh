@@ -1,11 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_FILE="${1:-../../files/config.yaml}"
+
 # Apply DNF/YUM repo files from YAML
-mapfile -t REPO_IDS < <(yq -r '.dnf_repos // [] | .[].id' "$YAML_FILE")
+mapfile -t REPO_IDS < <(yq -r '.dnf_repos // [] | .[].id' "$REPO_FILE")
 
 for id in "${REPO_IDS[@]}"; do
-  repo_file="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .filename" "$YAML_FILE")"
-  repo_path="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .path" "$YAML_FILE")"
-  gpgkey_url="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .gpgkey_url // \"\"" "$YAML_FILE")"
-  repo_body="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .repo" "$YAML_FILE")"
+  repo_file="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .filename" "$REPO_FILE")"
+  repo_path="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .path" "$REPO_FILE")"
+  gpgkey_url="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .gpgkey_url // \"\"" "$REPO_FILE")"
+  repo_body="$(yq -r ".dnf_repos[] | select(.id == \"$id\") | .repo" "$REPO_FILE")"
 
   dest="${repo_path%/}/$repo_file"
 
