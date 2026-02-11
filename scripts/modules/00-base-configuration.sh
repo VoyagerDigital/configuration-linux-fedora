@@ -21,3 +21,12 @@ mkdir \
 sudo dnf install \
     -y \
     yq
+
+##### CONFIGURE GIT #####
+git config \
+    --global \
+    user.name "Michiel Van Herreweghe"
+
+git config \
+    --global \
+    user.email "169037533+MichielVanHerreweghe@users.noreply.github.com"
