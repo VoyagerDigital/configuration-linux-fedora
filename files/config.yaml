@@ -13,3 +13,14 @@ dnf_repos:
       enabled=1
       gpgcheck=1
       gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+
+packages:
+  - zsh
+  - kitty
+  - wofi
+  - waybar
+  - hyprland
+  - hyprpaper
+  - hyprshot
+  - dotnet-sdk-10.0
+  - code
