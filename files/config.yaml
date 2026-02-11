@@ -1,2 +1,15 @@
 copr_repositories:
   - solopasha/hyprland
+
+dnf_repos:
+  - id: code
+    filename: vscode.repo
+    path: /etc/yum.repos.d
+    gpgkey_url: https://packages.microsoft.com/keys/microsoft.asc
+    repo: |
+      [code]
+      name=Visual Studio Code
+      baseurl=https://packages.microsoft.com/yumrepos/vscode
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://packages.microsoft.com/keys/microsoft.asc
